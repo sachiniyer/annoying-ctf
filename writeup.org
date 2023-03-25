@@ -1,0 +1,14 @@
+#+title: Writeup
+1. Find private key at /var/cache/fontconfig/cache.txt
+2. Use wordlist to run dns queries against 10.0.0.2 and find a bunch of words
+   and addresses
+3. netscan on the selected addresses - only 1000 now, and find port 9231 open on 10.28.191.94
+4. ssh and get into that new container
+5. find that there is a new dns server, and that there is an http server and
+   mqtt server accessible (use same wordlist approach, but only two results now)
+6. submit sql injection to that http server and dump the db - 2000 lines
+7. Figure out that vigenere cipher was used on the topic column (with key "topic")
+8. Decrypt cipher
+9. Start listening to topics on mqtt server
+10. Realize that bytes of flag are being sent every 10 min and combine it - easy
+    ceaser cypher

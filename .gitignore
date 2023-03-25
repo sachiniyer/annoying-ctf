@@ -1,0 +1,11 @@
+.DS_Store
+.idea
+*.log
+tmp/
+mqtt/data/mosquitto.db
+mqtt/log/mosquitto.log
+node_modules
+entries.txt
+entries_cipher.txt
+entries_plain.txt
+2_data.sql

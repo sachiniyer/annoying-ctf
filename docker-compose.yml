@@ -1,0 +1,112 @@
+networks:
+  ctf:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.0.0/8
+    attachable: true
+  flag:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/16
+    attachable: true
+
+services:
+  xtermjs:
+    restart: always
+    image: xtermjs/xterm.js
+    ports:
+      - "8080:3000"
+    #dns: 0.0.0.0
+    dns: 8.8.8.8
+    dns_search: nothing.com
+    networks:
+      ctf:
+        ipv4_address: 10.0.0.2
+    volumes:
+      - ./secondary/keys/key:/var/cache/fontconfig/cache.txt
+
+  secondary:
+    restart: always
+    build:
+      context: ./secondary
+    dns: 10.99.28.123
+    dns_search: nothing.com
+    networks:
+      ctf:
+        ipv4_address: 10.28.191.94
+
+  dns1:
+    restart: always
+    image: strm/dnsmasq
+    volumes:
+      - ./dns1/dnsmasq.conf:/etc/dnsmasq.conf
+    networks:
+      ctf:
+        ipv4_address: 10.0.0.3
+    cap_add:
+      - NET_ADMIN
+
+  dns2:
+    restart: always
+    image: strm/dnsmasq
+    volumes:
+      - ./dns2/dnsmasq.conf:/etc/dnsmasq.conf
+    networks:
+      ctf:
+        ipv4_address: 10.99.28.123
+    cap_add:
+      - NET_ADMIN
+
+  # http:
+  #   restart: always
+  #   image: strm/dnsmasq
+  #   volumes:
+  #     - ./dns2/dnsmasq.conf:/etc/dnsmasq.conf
+  #   networks:
+  #     ctf:
+  #       ipv4_address: 10.99.28.123
+  #   cap_add:
+  #     - NET_ADMIN
+
+  db:
+    restart: always
+    build:
+      context: ./db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: bjicecream
+    networks:
+      ctf:
+        ipv4_address: 10.79.19.100
+
+  mqtt:
+    restart: always
+    image: eclipse-mosquitto
+    networks:
+      ctf:
+        ipv4_address: 10.182.200.11
+      flag:
+        ipv4_address: 192.168.0.2
+    volumes:
+      - ./mqtt/conf:/mosquitto/config
+      - ./mqtt/data:/mosquitto/data
+      - ./mqtt/log:/mosquitto/log
+
+  flag:
+    restart: always
+    build:
+      context: ./sender
+    networks:
+      flag:
+        ipv4_address: 192.168.0.3
+
+  adminer:
+    restart: always
+    image: adminer
+    ports:
+      - "8081:8080"
+    networks:
+      ctf:
+        ipv4_address: 10.129.99.99
