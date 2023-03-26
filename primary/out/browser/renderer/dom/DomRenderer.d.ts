@@ -1,0 +1,45 @@
+import { IRenderDimensions, IRenderer, IRequestRedrawEvent } from 'browser/renderer/shared/Types';
+import { ICharSizeService, ICoreBrowserService, IThemeService } from 'browser/services/Services';
+import { ILinkifier2 } from 'browser/Types';
+import { Disposable } from 'common/Lifecycle';
+import { IBufferService, IInstantiationService, IOptionsService } from 'common/services/Services';
+export declare class DomRenderer extends Disposable implements IRenderer {
+    private readonly _element;
+    private readonly _screenElement;
+    private readonly _viewportElement;
+    private readonly _linkifier2;
+    private readonly _charSizeService;
+    private readonly _optionsService;
+    private readonly _bufferService;
+    private readonly _coreBrowserService;
+    private _rowFactory;
+    private _terminalClass;
+    private _themeStyleElement;
+    private _dimensionsStyleElement;
+    private _rowContainer;
+    private _rowElements;
+    private _selectionContainer;
+    private _cellToRowElements;
+    dimensions: IRenderDimensions;
+    readonly onRequestRedraw: import("common/EventEmitter").IEvent<IRequestRedrawEvent, void>;
+    constructor(_element: HTMLElement, _screenElement: HTMLElement, _viewportElement: HTMLElement, _linkifier2: ILinkifier2, instantiationService: IInstantiationService, _charSizeService: ICharSizeService, _optionsService: IOptionsService, _bufferService: IBufferService, _coreBrowserService: ICoreBrowserService, themeService: IThemeService);
+    private _updateDimensions;
+    private _injectCss;
+    handleDevicePixelRatioChange(): void;
+    private _refreshRowElements;
+    handleResize(cols: number, rows: number): void;
+    handleCharSizeChanged(): void;
+    handleBlur(): void;
+    handleFocus(): void;
+    handleSelectionChanged(start: [number, number] | undefined, end: [number, number] | undefined, columnSelectMode: boolean): void;
+    private _createSelectionElement;
+    handleCursorMove(): void;
+    private _handleOptionsChanged;
+    clear(): void;
+    renderRows(start: number, end: number): void;
+    private get _terminalSelector();
+    private _handleLinkHover;
+    private _handleLinkLeave;
+    private _setCellUnderline;
+}
+//# sourceMappingURL=DomRenderer.d.ts.map

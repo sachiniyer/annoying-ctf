@@ -13,12 +13,12 @@ networks:
     attachable: true
 
 services:
-  xtermjs:
+  primary:
     restart: always
-    image: xtermjs/xterm.js
+    build:
+      context: ./primary
     ports:
       - "8080:3000"
-    #dns: 0.0.0.0
     dns: 8.8.8.8
     dns_search: nothing.com
     networks:

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Support / Q&A
+    url:  https://github.com/xtermjs/xterm.js/discussions/categories/q-a
+    about: Use GitHub Discussions for community support and general Q&A
