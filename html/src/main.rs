@@ -10,11 +10,13 @@ struct Data {
 
 #[async_std::main]
 async fn main() -> tide::Result<()> {
+    print!("Starting up");
     dotenv::dotenv().ok();
     let mut app = tide::new();
     app.at("/").post(db_call);
     let listen = std::env::var("LISTEN_URL").expect("LISTEN_URL must be set.");
     app.listen(listen).await?;
+    print!("Server Started");
     Ok(())
 }
 

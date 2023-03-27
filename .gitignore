@@ -13,3 +13,4 @@ entries_plain.txt
 .mypy_cache
 
 target
+.env
