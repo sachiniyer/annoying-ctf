@@ -1,6 +1,6 @@
 import random
 
-wordlist = open("../wordlist/words.txt", "r")
+wordlist = open("wordlist/words.txt", "r")
 words = wordlist.readlines()
 used = []
 
@@ -33,5 +33,5 @@ IP = "10.28.191.94"
 full = template + generate_word() + "/" + IP + "\n"
 entries.append(full)
 
-conf = open('dnsmasq.conf', 'w')
+conf = open('dns1/dnsmasq.conf', 'w')
 conf.writelines(entries)

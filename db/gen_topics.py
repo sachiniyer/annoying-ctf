@@ -5,7 +5,7 @@ import sys
 
 sys.setrecursionlimit(5000)
 
-wordlist = open("../wordlist/words.txt", "r")
+wordlist = open("wordlist/words.txt", "r")
 words = wordlist.readlines()
 used = []
 
@@ -27,9 +27,9 @@ for i in range(2000):
     entries_plain.append(word + "\n")
     entries_cipher.append(cipher + "\n")
 
-f = open('entries_cipher.txt', 'w')
+f = open('db/entries_cipher.txt', 'w')
 f.writelines(entries_cipher)
-f = open('entries_plain.txt', 'w')
+f = open('db/entries_plain.txt', 'w')
 f.writelines(entries_plain)
-f = open('entries.txt', 'w')
+f = open('db/entries.txt', 'w')
 f.writelines(entries)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import random
 
-wordlist = open("entries_cipher.txt", "r")
+wordlist = open("db/entries_cipher.txt", "r")
 words = wordlist.readlines()
 outline = "INSERT INTO public.info (id, topic, title, meta, user_id, uuid) VALUES('{}', '{}' , '{}', '{}', '{}', '{}');\n"
 
@@ -27,5 +27,5 @@ for i in words:
     entries.append(outline.format(generate_random(), i[0:len(i)-1], generate_random(), generate_random(), generate_random(), generate_random()))
 
 
-f = open('migrations/2_data.sql', 'w')
+f = open('db/migrations/2_data.sql', 'w')
 f.writelines(entries)
