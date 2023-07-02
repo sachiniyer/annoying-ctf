@@ -11,3 +11,5 @@ I had a challenge with my roommate @amino to make a ctf, so I did.
 
 # Description
 This challenge has around 3 stages. It requires patience, waiting, and some guessing. Think outside the box/container. The line between when to brute force and when to create an elegant solution is blurry.
+
+Also, there are some keys, they don't do anything really expect in this ctf.
