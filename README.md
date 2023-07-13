@@ -1,6 +1,6 @@
 # Annoying CTF
 
-I had a challenge with my roommate @amino to make a ctf, so I did.
+I had a challenge with my roommate @amino to make a ctf, so I did. (Currently trying to find a safe way to deploy this.)
 
 
 # Installation Instructions
